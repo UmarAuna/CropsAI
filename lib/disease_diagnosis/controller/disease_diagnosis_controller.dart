@@ -5,12 +5,11 @@ import 'package:get/get.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:image_picker/image_picker.dart';
 
-class MainController extends GetxController {
+class DiseaseDiagnosisController extends GetxController {
   final responseText = ''.obs;
   final loading = false.obs;
   final ImagePicker picker = ImagePicker();
   XFile? photo;
-  //Uint8List? selectedImage;
 
   // Create a GenerativeModel instance with your API key and model name.
   final model = GenerativeModel(
@@ -27,7 +26,7 @@ class MainController extends GetxController {
     safetySettings: safetySettings,
   );
 
-  Future<void> generateImage() async {
+  Future<void> getDiseaseDiagnosisImage() async {
     /* if (photo != null) {
       print('No image selected');
       return;
@@ -61,35 +60,32 @@ Your role is pivotal in ensuring the health and productivity of plants. Proceed 
 """);
 
     // Generate text using the GenerativeModel instance.
-    if (visionModel != null) {
-      try {
-        loading.value = true;
-        final content = [
-          Content.multi([
-            inputPrompt,
-            DataPart('image/jpeg', imageBytes),
-          ])
-        ];
-        final response = await visionModel.generateContent(content);
-        debugPrint(response.text);
-        loading.value = false;
-        responseText.value = response.text!;
-      } catch (e) {
-        loading.value = false;
-        debugPrint(e.toString());
-        responseText.value = 'message: ${e.toString()}';
-        //return responseText.value = 'Error generating text';
-      }
-    } else {
-      // Handle the case where visionModel is null
-      print('visionModel is null');
+
+    try {
+      loading.value = true;
+      final content = [
+        Content.multi([
+          inputPrompt,
+          DataPart('image/jpeg', imageBytes),
+        ])
+      ];
+      final response = await visionModel.generateContent(content);
+      debugPrint(response.text);
+      loading.value = false;
+      responseText.value = response.text!;
+    } catch (e) {
+      loading.value = false;
+      debugPrint(e.toString());
+      responseText.value = 'message: ${e.toString()}';
+      //return responseText.value = 'Error generating text';
     }
+
     //print(response.text);
   }
 
-  Future<String> generateText() async {
-    const inputPrompt = """
-As a highly skilled plant pathologist, your expertise is indispensable in our pursuit of maintaining optimal plant health. You will be provided with information or samples related to plant diseases, and your role involves conducting a detailed analysis to identify the specific issues, propose solutions, and offer recommendations.
+  Future<String> getDiseaseDiagnosisText(String disease) async {
+    final inputPrompt = """
+As a highly skilled plant pathologist, your expertise is indispensable in our pursuit of maintaining optimal plant health. You will be provided with information or samples related to plant diseases $disease, and your role involves conducting a detailed analysis to identify the specific issues, propose solutions, and offer recommendations.
 
 **Analysis Guidelines:**
 

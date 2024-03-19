@@ -1,26 +1,26 @@
 import 'dart:io';
-import 'dart:typed_data';
 
-import 'package:crops_ai/chat_input_box.dart';
+import 'package:crops_ai/disease_diagnosis/controller/disease_diagnosis_controller.dart';
+import 'package:crops_ai/home/controller/home_controller.dart';
+import 'package:crops_ai/home/view/home_page.dart';
 import 'package:crops_ai/main_controller.dart';
+import 'package:crops_ai/routes.dart';
+import 'package:crops_ai/utils/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get/get.dart';
-import 'package:google_generative_ai/google_generative_ai.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:lottie/lottie.dart';
+import 'package:navigation_history_observer/navigation_history_observer.dart';
 
 Future<void> main() async {
-  /*  Gemini.init(
-      apiKey: 'AIzaSyAYKMCOfCEuqTudatKKPJDx8gQ3e4VrYeM', enableDebugging: true); */
-
-  //Gemini.reInitialize(apiKey: "ali", enableDebugging: false);
   await initServices();
   runApp(const MyApp());
 }
 
 Future<void> initServices() async {
   Get.lazyPut<MainController>(() => MainController());
+  Get.lazyPut<HomeController>(() => HomeController());
+  Get.lazyPut<DiseaseDiagnosisController>(() => DiseaseDiagnosisController());
 }
 
 class MyApp extends StatelessWidget {
@@ -29,14 +29,39 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    return LayoutBuilder(builder: (context, constraints) {
+      return OrientationBuilder(builder: (context, orientation) {
+        return GestureDetector(
+          onTap: () {
+            final FocusScopeNode currentScope = FocusScope.of(context);
+
+            // Close the keyboard when the user clicks outside the input field
+            if (!currentScope.hasPrimaryFocus && currentScope.hasFocus) {
+              FocusManager.instance.primaryFocus?.unfocus();
+            }
+          },
+          child: GetMaterialApp(
+            title: 'CropsAI',
+            fallbackLocale: const Locale('en_US'),
+            navigatorObservers: [NavigationHistoryObserver()],
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              colorScheme:
+                  ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
+              useMaterial3: true,
+            ),
+            home: const HomePage(),
+            //home: const MyHomePage(title: 'Flutter Demo Home Page'),
+            //home: const SplashScreenPage(), *TODO @Umar undo this
+            initialRoute: HomePage.id,
+            routes: routes,
+            /* initialRoute: SplashScreenPage.id,
+              routes: routes, */
+          ),
+        );
+      });
+    });
   }
 }
 
@@ -98,6 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               File(mainController.photo?.path ?? ''))),
                     Expanded(
                       child: Markdown(
+                        selectable: true,
                         data: mainController.responseText.value,
                         padding: const EdgeInsets.symmetric(horizontal: 12),
                       ),
