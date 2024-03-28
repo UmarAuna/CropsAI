@@ -1,8 +1,9 @@
-import 'package:crops_ai/disease_diagnosis/controller/disease_diagnosis_controller.dart';
-import 'package:crops_ai/disease_diagnosis/view/diagnosis_image.dart';
-import 'package:crops_ai/disease_diagnosis/view/diagnosis_text.dart';
-import 'package:crops_ai/home/widget/page_loader.dart';
+import 'package:crops_ai/screens/disease_diagnosis/controller/disease_diagnosis_controller.dart';
+import 'package:crops_ai/screens/disease_diagnosis/view/diagnosis_image.dart';
+import 'package:crops_ai/screens/disease_diagnosis/view/diagnosis_text.dart';
+import 'package:crops_ai/screens/home/widget/page_loader.dart';
 import 'package:crops_ai/utils/app_colors.dart';
+import 'package:crops_ai/utils/util.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -54,12 +55,27 @@ class _DiseaseDiagnosisPageState extends State<DiseaseDiagnosisPage> {
         body: widget.isDiseaseNameSelected == 'disease_text'
             ? diseaseDiagnoseController.loading.value
                 ? const PageLoader()
-                : DiagnosisText(
-                    diseaseDiagnosisController: diseaseDiagnoseController)
+                : WillPopScope(
+                    onWillPop: () async {
+                      diseaseDiagnoseController.responseText.value = '';
+                      goBack(context);
+                      return true;
+                    },
+                    child: DiagnosisText(
+                        diseaseDiagnosisController: diseaseDiagnoseController),
+                  )
             : diseaseDiagnoseController.loading.value
                 ? const PageLoader()
-                : DiagnosisImage(
-                    diseaseDiagnosisController: diseaseDiagnoseController),
+                : WillPopScope(
+                    onWillPop: () async {
+                      diseaseDiagnoseController.responseText.value = '';
+                      diseaseDiagnoseController.photo = null;
+                      goBack(context);
+                      return true;
+                    },
+                    child: DiagnosisImage(
+                        diseaseDiagnosisController: diseaseDiagnoseController),
+                  ),
       );
     });
   }

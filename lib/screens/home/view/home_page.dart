@@ -1,5 +1,5 @@
-import 'package:crops_ai/home/controller/home_controller.dart';
-import 'package:crops_ai/home/widget/home_card.dart';
+import 'package:crops_ai/screens/home/controller/home_controller.dart';
+import 'package:crops_ai/screens/home/widget/home_card.dart';
 import 'package:crops_ai/utils/app_colors.dart';
 import 'package:crops_ai/utils/app_vectors.dart';
 import 'package:crops_ai/utils/util.dart';
@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       /*  appBar: AppBar(
         title: const Text('HomePage',
             style: TextStyle(

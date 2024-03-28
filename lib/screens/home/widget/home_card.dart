@@ -1,5 +1,8 @@
-import 'package:crops_ai/home/modal/home_modal.dart';
-import 'package:crops_ai/home/model/home_card_item.dart';
+import 'package:crops_ai/screens/home/modal/crop_care_modal.dart';
+import 'package:crops_ai/screens/home/modal/crops_info_modal.dart';
+import 'package:crops_ai/screens/home/modal/disease_diagnosis_modal.dart';
+import 'package:crops_ai/screens/home/modal/harvest_prediction_modal.dart';
+import 'package:crops_ai/screens/home/model/home_card_item.dart';
 import 'package:crops_ai/utils/app_colors.dart';
 import 'package:crops_ai/utils/app_vectors.dart';
 import 'package:crops_ai/utils/util.dart';
@@ -17,7 +20,7 @@ class HomeCard extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, crossAxisSpacing: 20.0, mainAxisSpacing: 20.0),
+              crossAxisCount: 2, crossAxisSpacing: 35.0, mainAxisSpacing: 35.0),
           itemCount: homeCardItems.length,
           itemBuilder: (context, int index) {
             final homeCardItem = homeCardItems[index];
@@ -32,24 +35,73 @@ class HomeCard extends StatelessWidget {
                         ),
                       ),
                       isScrollControlled: true,
+                      isDismissible: true,
                       enableDrag: true,
                       context: context,
                       builder: (builder) {
-                        return Container(
+                        return SingleChildScrollView(
                             padding: EdgeInsets.only(
-                              bottom: MediaQuery.of(context).viewInsets.bottom,
-                            ),
-                            child: ConstrainedBox(
-                              constraints: const BoxConstraints(maxHeight: 450),
-                              child: const HomeModal(),
-                            ));
+                                bottom:
+                                    MediaQuery.of(context).viewInsets.bottom),
+                            child: const DiseaseDiagnosisModal());
                       });
                 } else if (index == 1) {
-                  print('Saying');
+                  showModalBottomSheet(
+                      backgroundColor: AppColors.white,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(15),
+                        ),
+                      ),
+                      isScrollControlled: true,
+                      isDismissible: true,
+                      enableDrag: true,
+                      context: context,
+                      builder: (builder) {
+                        return SingleChildScrollView(
+                            padding: EdgeInsets.only(
+                                bottom:
+                                    MediaQuery.of(context).viewInsets.bottom),
+                            child: const CropsInformationModal());
+                      });
                 } else if (index == 2) {
-                  print('Share');
+                  showModalBottomSheet(
+                      backgroundColor: AppColors.white,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(15),
+                        ),
+                      ),
+                      isScrollControlled: true,
+                      isDismissible: true,
+                      enableDrag: true,
+                      context: context,
+                      builder: (builder) {
+                        return SingleChildScrollView(
+                            padding: EdgeInsets.only(
+                                bottom:
+                                    MediaQuery.of(context).viewInsets.bottom),
+                            child: const CropCareModal());
+                      });
                 } else if (index == 3) {
-                  print('About');
+                  showModalBottomSheet(
+                      backgroundColor: AppColors.white,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(15),
+                        ),
+                      ),
+                      isScrollControlled: true,
+                      isDismissible: true,
+                      enableDrag: true,
+                      context: context,
+                      builder: (builder) {
+                        return SingleChildScrollView(
+                            padding: EdgeInsets.only(
+                                bottom:
+                                    MediaQuery.of(context).viewInsets.bottom),
+                            child: const HarvestPredictionModal());
+                      });
                 }
               },
               child: Container(
@@ -79,7 +131,7 @@ class HomeCard extends StatelessWidget {
                             /* height: 52,
                             width: 52, */
                           ),
-                          30.widthSpace,
+                          35.widthSpace,
                           SvgPicture.asset(AppVectors.iconArrowRight,
                               semanticsLabel: 'arrow icon'),
                         ],

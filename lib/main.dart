@@ -1,8 +1,11 @@
 import 'dart:io';
 
-import 'package:crops_ai/disease_diagnosis/controller/disease_diagnosis_controller.dart';
-import 'package:crops_ai/home/controller/home_controller.dart';
-import 'package:crops_ai/home/view/home_page.dart';
+import 'package:crops_ai/screens/crop_care/controller/crop_care_controller.dart';
+import 'package:crops_ai/screens/crops_information/controller/crops_information_controller.dart';
+import 'package:crops_ai/screens/disease_diagnosis/controller/disease_diagnosis_controller.dart';
+import 'package:crops_ai/screens/harvest_prediction/controller/harvest_prediction_controller.dart';
+import 'package:crops_ai/screens/home/controller/home_controller.dart';
+import 'package:crops_ai/screens/home/view/home_page.dart';
 import 'package:crops_ai/main_controller.dart';
 import 'package:crops_ai/routes.dart';
 import 'package:crops_ai/utils/app_colors.dart';
@@ -13,6 +16,7 @@ import 'package:get/get.dart';
 import 'package:navigation_history_observer/navigation_history_observer.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await initServices();
   runApp(const MyApp());
 }
@@ -21,6 +25,9 @@ Future<void> initServices() async {
   Get.lazyPut<MainController>(() => MainController());
   Get.lazyPut<HomeController>(() => HomeController());
   Get.lazyPut<DiseaseDiagnosisController>(() => DiseaseDiagnosisController());
+  Get.lazyPut<CropsInformationController>(() => CropsInformationController());
+  Get.lazyPut<CropCareController>(() => CropCareController());
+  Get.lazyPut<HarvestPredictionController>(() => HarvestPredictionController());
 }
 
 class MyApp extends StatelessWidget {

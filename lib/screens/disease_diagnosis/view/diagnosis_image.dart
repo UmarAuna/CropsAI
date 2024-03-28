@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:crops_ai/disease_diagnosis/controller/disease_diagnosis_controller.dart';
+import 'package:crops_ai/screens/disease_diagnosis/controller/disease_diagnosis_controller.dart';
 import 'package:crops_ai/utils/util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
