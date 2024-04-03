@@ -200,7 +200,7 @@ class _HarvestPredictionModalState extends State<HarvestPredictionModal> {
                           decoration:
                               AppDecorations.inputDecorationLight.copyWith(
                             counterText: '',
-                            hintText: 'e.g Nasko, Niger State',
+                            hintText: 'e.g Nasko, Niger State, Nigeria',
                             filled: true,
                             fillColor: AppColors.transparent,
                           ),

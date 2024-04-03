@@ -40,26 +40,34 @@ class HarvestPredictionController extends GetxController {
         imageQuality: 60);
     final imageBytes = await File(photo!.path).readAsBytes();
     logDebug('Image bytes: $imageBytes');
+    //As a highly skilled farmer, Could you Please assist me Identify the name of the crop in the image and assist me with harvest predictions for the crop grown in $location. I'm seeking guidance on how to effectively harvest the crop following the guidelines below and relevant disclaimers at the end:
     final inputPrompt = TextPart("""
-As a highly skilled plant pathologist Identify the name of the crop in the image and provide the necessary information when is best to harvest this crop in this $location  . Your role involves conducting a detailed analysis to identify the specific issues, propose solutions, and offer recommendations.
-Also please don't prepare it as a report.
+As a highly skilled farmer, Could you kindly help me with the following inquiries regarding crop cultivation? by following the guidelines below and relevant disclaimers at the end:
 
 **Guidelines:**
-//TODO  continue from here Fix this it is not getting location even its provided
-1. **Best time to harvest in this $location:** when is the best time to harvest it in $location.
 
-2. **How to harvest it:** Best way to harvest it.
+**Crop Identification and Location:** Please identify the crop depicted in the provided image and specify its cultivation location.
 
-3. **Best way to preserve it:** Recommend best ways to preserve it.
+**Harvest Timing::** When the crop is mature and ready to be harvested in that location.
 
-4. **Recommendations:** Provide recommendation.
+**Duration of harvest:** How long does the harvest season typically last for this crop in the specified location?
 
-5. **Important Note:** As a plant pathologist, your insights are vital for informed decision-making in agriculture and plant management. Your response should be thorough, concise, and focused on plant.
+**Harvest Timeline:** Could you provide a timeline outlining the stages of harvest for the identified crop grown in the specified location?
+
+**Optimal Harvest Time:** When is the best time to harvest this crop in the specified location?
+
+**Best time to harvest it in this $location:** when is the best time to harvest it in $location.
+
+**Best way to harvest:** Techniques for harvesting the crop properly.
+
+**Harvesting Techniques:** What are the recommended techniques for harvesting this crop effectively?
+
+**Preservation and storage:** How should the harvested crop be preserved and stored to maintain its quality?
+
+**Recommendations:** What are the best practices for managing the harvest and preventing diseases in this crop?
 
 **Disclaimer:**
-*"Please note that the information provided is based on plant pathology analysis and should not replace professional agricultural advice. Consult with qualified agricultural experts before implementing any strategies or treatments."*
-
-Your role is pivotal in ensuring the health and productivity of plants. Proceed to analyze the provided information or samples, adhering to the structured 
+ *"Please note that the information provided is based on general agricultural knowledge and should not replace professional agricultural advice. Consult with qualified agricultural experts for specific recommendations considering local conditions."*
 """);
 
     // Generate text using the GenerativeModel instance.
@@ -89,25 +97,32 @@ Your role is pivotal in ensuring the health and productivity of plants. Proceed 
   Future<String> getHarvestPredictionText(
       String cropName, String location) async {
     final inputPrompt = """
-As a highly skilled plant pathologist, your expertise is indispensable in our pursuit when  is best to harvest $cropName in $location . Your role involves conducting a detailed analysis to identify the specific issues, propose solutions, and offer recommendations.
-Also please don't prepare it as a report.
+As a highly skilled farmer, Could you assist me with harvest predictions for $cropName grown in $location? I'm seeking guidance on how to effectively harvest the crop, the expected duration of the harvest period, optimal timing for harvesting, recommended methods for preserving and storing the produce, along with any additional recommendations and relevant disclaimers at the end:
 
 **Guidelines:**
 
-1. **Best time to harvest:** when is the best time to harvest it.
+**Crop Identification and Location:** Provide name of crop and location
 
-2. **How to harvest it:** Best way to harvest it.
+**Harvest Timing::** When the crop is mature and ready to be harvested in that location.
 
-3. **Best way to preserve it:** Recommend best ways to preserve it.
+**Duration of harvest:** How long the harvest season lasts in that location.
 
-4. **Recommendations:** Provide recommendation.
+**Harvest Timeline:** Give me the timeline of harvest for $cropName grown in $location.
 
-5. **Important Note:** As a plant pathologist, your insights are vital for informed decision-making in agriculture and plant management. Your response should be thorough, concise, and focused on plant.
+**Optimal Harvest Time:** When is the best time to harvest this crop in the specified location?
+
+**Best time to harvest it in $location:** when is the best time to harvest it in $location.
+
+**Best way to harvest:** Techniques for harvesting the crop properly.
+
+**Harvesting Techniques:** What are the recommended techniques for harvesting this crop effectively?
+
+**Preservation and storage:** How to preserve and store the harvested crop.
+
+**Recommendations:** Best practices for harvest management and disease prevention.
 
 **Disclaimer:**
-*"Please note that the information provided is based on plant pathology analysis and should not replace professional agricultural advice. Consult with qualified agricultural experts before implementing any strategies or treatments."*
-
-Your role is pivotal in ensuring the health and productivity of plants. Proceed to analyze the provided information or samples, adhering to the structured 
+  *"Please note that the information provided is based on general agricultural knowledge and should not replace professional agricultural advice. Consult with qualified agricultural experts for specific recommendations considering local conditions."*
 """;
     // Generate text using the GenerativeModel instance.
     try {
