@@ -62,29 +62,25 @@ Your role is pivotal in ensuring the health and productivity of plants. Proceed 
 """);
 
     // Generate text using the GenerativeModel instance.
-    if (visionModel != null) {
-      try {
-        loading.value = true;
-        final content = [
-          Content.multi([
-            inputPrompt,
-            DataPart('image/jpeg', imageBytes),
-          ])
-        ];
-        final response = await visionModel.generateContent(content);
-        debugPrint(response.text);
-        loading.value = false;
-        responseText.value = response.text!;
-      } catch (e) {
-        loading.value = false;
-        debugPrint(e.toString());
-        responseText.value = 'message: ${e.toString()}';
-        //return responseText.value = 'Error generating text';
-      }
-    } else {
-      // Handle the case where visionModel is null
-      print('visionModel is null');
+    try {
+      loading.value = true;
+      final content = [
+        Content.multi([
+          inputPrompt,
+          DataPart('image/jpeg', imageBytes),
+        ])
+      ];
+      final response = await visionModel.generateContent(content);
+      debugPrint(response.text);
+      loading.value = false;
+      responseText.value = response.text!;
+    } catch (e) {
+      loading.value = false;
+      debugPrint(e.toString());
+      responseText.value = 'message: ${e.toString()}';
+      //return responseText.value = 'Error generating text';
     }
+
     //print(response.text);
   }
 

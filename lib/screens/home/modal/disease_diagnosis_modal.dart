@@ -100,7 +100,9 @@ class _DiseaseDiagnosisModalState extends State<DiseaseDiagnosisModal> {
                     ]),
                     20.heightSpace,
                     if (homeController.isDiseaseNameSelected.value ==
-                        'disease_image') ...[
+                            'disease_image' ||
+                        homeController.isDiseaseNameSelected.value ==
+                            'disease_pest') ...[
                       HomeModalItem(
                           onClick: () {
                             homeController.isDiseaseNameSelected.value =
@@ -116,6 +118,15 @@ class _DiseaseDiagnosisModalState extends State<DiseaseDiagnosisModal> {
                             homeController.goToDiseaseDiagnosisPage(context);
                           },
                           title: 'Capture image of crop disease'),
+                      20.heightSpace,
+                      HomeModalItem(
+                          onClick: () {
+                            homeController.isDiseaseNameSelected.value =
+                                'disease_pest';
+                            homeController.nameOfDiseaseController.text = '';
+                            homeController.goToDiseaseDiagnosisPage(context);
+                          },
+                          title: 'Capture image of pest'),
                     ],
                     10.heightSpace,
                     if (homeController.isDiseaseNameSelected.value ==

@@ -7,6 +7,8 @@ class AppConfig {
 
   static final generationConfig = GenerationConfig(
     //stopSequences: ["red"],
+    // for now gemini-pro seems to support only one candidate
+    candidateCount: 1,
     maxOutputTokens: 12096,
     temperature: 0.4,
     topP: 0.1,

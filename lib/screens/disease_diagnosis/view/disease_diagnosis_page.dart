@@ -1,5 +1,6 @@
 import 'package:crops_ai/screens/disease_diagnosis/controller/disease_diagnosis_controller.dart';
 import 'package:crops_ai/screens/disease_diagnosis/view/diagnosis_image.dart';
+import 'package:crops_ai/screens/disease_diagnosis/view/diagnosis_pest.dart';
 import 'package:crops_ai/screens/disease_diagnosis/view/diagnosis_text.dart';
 import 'package:crops_ai/screens/home/widget/page_loader.dart';
 import 'package:crops_ai/utils/app_colors.dart';
@@ -28,15 +29,16 @@ class _DiseaseDiagnosisPageState extends State<DiseaseDiagnosisPage> {
     if (widget.isDiseaseNameSelected == 'disease_text') {
       diseaseDiagnoseController
           .getDiseaseDiagnosisText(widget.nameOfDisease ?? '');
-    } else {
+    } else if (widget.isDiseaseNameSelected == 'disease_image') {
       diseaseDiagnoseController.getDiseaseDiagnosisImage();
+    } else {
+      diseaseDiagnoseController.getPestDiagnosisImage();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return Scaffold(
+    return Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.primaryColor,
           iconTheme: const IconThemeData(color: AppColors.white),
@@ -52,7 +54,57 @@ class _DiseaseDiagnosisPageState extends State<DiseaseDiagnosisPage> {
                   fontFamily: 'Poppins')),
           centerTitle: true,
         ),
-        body: widget.isDiseaseNameSelected == 'disease_text'
+        body: LayoutBuilder(builder: (context, constraints) {
+          if (widget.isDiseaseNameSelected == 'disease_text') {
+            return Obx(() {
+              return diseaseDiagnoseController.loading.value
+                  ? const PageLoader()
+                  : WillPopScope(
+                      onWillPop: () async {
+                        diseaseDiagnoseController.responseText.value = '';
+                        goBack(context);
+                        return true;
+                      },
+                      child: DiagnosisText(
+                          diseaseDiagnosisController:
+                              diseaseDiagnoseController),
+                    );
+            });
+          } else if (widget.isDiseaseNameSelected == 'disease_image') {
+            return Obx(() {
+              return diseaseDiagnoseController.loading.value
+                  ? const PageLoader()
+                  : WillPopScope(
+                      onWillPop: () async {
+                        diseaseDiagnoseController.responseText.value = '';
+                        diseaseDiagnoseController.photo = null;
+                        goBack(context);
+                        return true;
+                      },
+                      child: DiagnosisImage(
+                          diseaseDiagnosisController:
+                              diseaseDiagnoseController),
+                    );
+            });
+          } else {
+            return Obx(() {
+              return diseaseDiagnoseController.loading.value
+                  ? const PageLoader()
+                  : WillPopScope(
+                      onWillPop: () async {
+                        diseaseDiagnoseController.responseText.value = '';
+                        diseaseDiagnoseController.photo = null;
+                        goBack(context);
+                        return true;
+                      },
+                      child: DiagnosisPest(
+                          diseaseDiagnosisController:
+                              diseaseDiagnoseController),
+                    );
+            });
+          }
+        })
+/*  widget.isDiseaseNameSelected == 'disease_text'
             ? diseaseDiagnoseController.loading.value
                 ? const PageLoader()
                 : WillPopScope(
@@ -75,8 +127,7 @@ class _DiseaseDiagnosisPageState extends State<DiseaseDiagnosisPage> {
                     },
                     child: DiagnosisImage(
                         diseaseDiagnosisController: diseaseDiagnoseController),
-                  ),
-      );
-    });
+                  ), */
+        );
   }
 }

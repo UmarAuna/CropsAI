@@ -5,9 +5,9 @@ import 'package:crops_ai/screens/crops_information/controller/crops_information_
 import 'package:crops_ai/screens/disease_diagnosis/controller/disease_diagnosis_controller.dart';
 import 'package:crops_ai/screens/harvest_prediction/controller/harvest_prediction_controller.dart';
 import 'package:crops_ai/screens/home/controller/home_controller.dart';
-import 'package:crops_ai/screens/home/view/home_page.dart';
 import 'package:crops_ai/main_controller.dart';
 import 'package:crops_ai/routes.dart';
+import 'package:crops_ai/screens/home/view/splash_screen_page.dart';
 import 'package:crops_ai/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -58,10 +58,8 @@ class MyApp extends StatelessWidget {
                   ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
               useMaterial3: true,
             ),
-            home: const HomePage(),
-            //home: const MyHomePage(title: 'Flutter Demo Home Page'),
-            //home: const SplashScreenPage(), *TODO @Umar undo this
-            initialRoute: HomePage.id,
+            home: const SplashScreenPage(),
+            initialRoute: SplashScreenPage.id,
             routes: routes,
             /* initialRoute: SplashScreenPage.id,
               routes: routes, */

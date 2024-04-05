@@ -10,4 +10,5 @@ class AppVectors {
   static const String iconShare = 'assets/svgs/share.svg';
   static const String icDragModal = 'assets/svgs/ic_drag_modal.svg';
   static const String iconCloseOutline = 'assets/svgs/ic_close_outline.svg';
+  static const String appLogo = 'assets/svgs/ic_app_icon.svg';
 }

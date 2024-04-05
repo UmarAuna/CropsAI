@@ -1,11 +1,13 @@
 import 'dart:io';
 
+import 'package:crops_ai/utils/app_colors.dart';
 import 'package:crops_ai/utils/app_config.dart';
 import 'package:crops_ai/utils/util.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:stylish_dialog/stylish_dialog.dart';
 
 class CropsInformationController extends GetxController {
   final responseText = ''.obs;
@@ -29,10 +31,35 @@ class CropsInformationController extends GetxController {
   );
 
   Future<void> getCropInformationImage() async {
-    /* if (photo != null) {
-      print('No image selected');
+    if (!await hasInternetConnection()) {
+      StylishDialog(
+        context: Get.context!,
+        alertType: StylishDialogType.ERROR,
+        title: const Text('No Internet Connection'),
+        content: const Text('Please connect too the internet...'),
+        confirmButton: ElevatedButton(
+          style: ButtonStyle(
+              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8))),
+              backgroundColor:
+                  MaterialStateProperty.all(AppColors.primaryColor)),
+          onPressed: () {
+            goBack(Get.context!);
+          },
+          child: const Padding(
+            padding: EdgeInsets.only(left: 40, right: 40, top: 10, bottom: 10),
+            child: Text('Ok',
+                style: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Poppin',
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500)),
+          ),
+        ),
+      ).show();
       return;
-    } */
+    }
+
     photo = await picker.pickImage(
         source: ImageSource.camera,
         maxHeight: 480,
@@ -41,25 +68,24 @@ class CropsInformationController extends GetxController {
     final imageBytes = await File(photo!.path).readAsBytes();
     logDebug('Image bytes: $imageBytes');
     final inputPrompt = TextPart("""
-As a highly skilled plant pathologist, your expertise is indispensable in our pursuit of maintaining optimal plant health. You will be provided with information or samples related to plant diseases, and your role involves conducting a detailed analysis to identify the specific issues, propose solutions, and offer recommendations.
-Also please don't prepare it as a report.
+As a highly skilled farmer please Identify the name of the crop in the image and help provide comprehensive information regarding the crop name by getting crop cultivation, including planting guides, fertilizer recommendations, water requirements, common pests, and diseases? Additionally, could you filter the information based on crop categories such as fruits, vegetables, grains, etc.? and give me relevant disclaimers at the end following this guidelines:
 
-**Analysis Guidelines:**
+**Guidelines:**
 
-1. **Disease Identification:** Examine the provided information or samples to identify and characterize plant diseases accurately.
+**Crop name:** Provide name of crop with emoji if any found
 
-2. **Detailed Findings:** Provide in-depth findings on the nature and extent of the identified plant diseases, including affected plant parts, symptoms, and potential causes.
+**Crop category:** What type of crop category is this, i.e fruits, vegetables, grains, or legumes.
 
-3. **Next Steps:** Outline the recommended course of action for managing and controlling the identified plant diseases. This may involve treatment options, preventive measures, or further investigations.
+**Planting guides:** Tips on timing, spacing, and fertilization.
 
-4. **Recommendations:** Offer informed recommendations for maintaining plant health, preventing disease spread, and optimizing overall plant well-being.
+**Fertilizer recommendations:** Best fertilizers based on soil, climate, and crop type.
 
-5. **Important Note:** As a plant pathologist, your insights are vital for informed decision-making in agriculture and plant management. Your response should be thorough, concise, and focused on plant health.
+**Water needs:** Recommended irrigation practices based on weather conditions and soil type.
+
+**Common pests and diseases:** Information about common pests and diseases that affect each crop, as well as prevention and treatment methods.
 
 **Disclaimer:**
-*"Please note that the information provided is based on plant pathology analysis and should not replace professional agricultural advice. Consult with qualified agricultural experts before implementing any strategies or treatments."*
-
-Your role is pivotal in ensuring the health and productivity of plants. Proceed to analyze the provided information or samples, adhering to the structured 
+  *"Please note that the information provided is based on general agricultural knowledge and should not replace professional agricultural advice. Consult with qualified agricultural experts for specific recommendations considering local conditions."*
 """);
 
     // Generate text using the GenerativeModel instance.
@@ -86,27 +112,55 @@ Your role is pivotal in ensuring the health and productivity of plants. Proceed 
     //print(response.text);
   }
 
-  Future<String> getCropInformationText(String disease) async {
+  Future<String> getCropInformationText(String nameOfCrop) async {
+    if (!await hasInternetConnection()) {
+      StylishDialog(
+        context: Get.context!,
+        alertType: StylishDialogType.ERROR,
+        title: const Text('No Internet Connection'),
+        content: const Text('Please connect too the internet...'),
+        confirmButton: ElevatedButton(
+          style: ButtonStyle(
+              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8))),
+              backgroundColor:
+                  MaterialStateProperty.all(AppColors.primaryColor)),
+          onPressed: () {
+            goBack(Get.context!);
+          },
+          child: const Padding(
+            padding: EdgeInsets.only(left: 40, right: 40, top: 10, bottom: 10),
+            child: Text('Ok',
+                style: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Poppin',
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500)),
+          ),
+        ),
+      ).show();
+      return 'No Internet Connection...';
+    }
+
     final inputPrompt = """
-As a highly skilled plant pathologist, your expertise is indispensable in our pursuit of maintaining optimal plant health. You will be provided with information or samples related to plant diseases $disease, and your role involves conducting a detailed analysis to identify the specific issues, propose solutions, and offer recommendations.
-Also please don't prepare it as a report.
+As a highly skilled farmer please help provide comprehensive information regarding $nameOfCrop by getting crop cultivation, including planting guides, fertilizer recommendations, water requirements, common pests, and diseases? Additionally, could you filter the information based on crop categories such as fruits, vegetables, grains, etc.? and give me relevant disclaimers at the end following this guidelines:
 
-**Analysis Guidelines:**
+**Guidelines:**
 
-1. **Disease Identification:** Examine the provided information or samples to identify and characterize plant diseases accurately.
+**Crop name:** Provide name of crop with emoji if any found
 
-2. **Detailed Findings:** Provide in-depth findings on the nature and extent of the identified plant diseases, including affected plant parts, symptoms, and potential causes.
+**Crop category:** What type of crop category is this, i.e fruits, vegetables, grains, or legumes or any.
 
-3. **Next Steps:** Outline the recommended course of action for managing and controlling the identified plant diseases. This may involve treatment options, preventive measures, or further investigations.
+**Planting guides:** Tips on timing, spacing, and fertilization.
 
-4. **Recommendations:** Offer informed recommendations for maintaining plant health, preventing disease spread, and optimizing overall plant well-being.
+**Fertilizer recommendations:** Best fertilizers based on soil, climate, and crop type.
 
-5. **Important Note:** As a plant pathologist, your insights are vital for informed decision-making in agriculture and plant management. Your response should be thorough, concise, and focused on plant health.
+**Water needs:** Recommended irrigation practices based on weather conditions and soil type.
+
+**Common pests and diseases:** Information about common pests and diseases that affect each crop, as well as prevention and treatment methods.
 
 **Disclaimer:**
-*"Please note that the information provided is based on plant pathology analysis and should not replace professional agricultural advice. Consult with qualified agricultural experts before implementing any strategies or treatments."*
-
-Your role is pivotal in ensuring the health and productivity of plants. Proceed to analyze the provided information or samples, adhering to the structured 
+  *"Please note that the information provided is based on general agricultural knowledge and should not replace professional agricultural advice. Consult with qualified agricultural experts for specific recommendations considering local conditions."*
 """;
     // Generate text using the GenerativeModel instance.
     try {

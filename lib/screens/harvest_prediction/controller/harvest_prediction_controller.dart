@@ -1,11 +1,13 @@
 import 'dart:io';
 
+import 'package:crops_ai/utils/app_colors.dart';
 import 'package:crops_ai/utils/app_config.dart';
 import 'package:crops_ai/utils/util.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:stylish_dialog/stylish_dialog.dart';
 
 class HarvestPredictionController extends GetxController {
   final responseText = ''.obs;
@@ -29,10 +31,35 @@ class HarvestPredictionController extends GetxController {
   );
 
   Future<void> getHarvestPredictionImage(String location) async {
-    /* if (photo != null) {
-      print('No image selected');
+    if (!await hasInternetConnection()) {
+      StylishDialog(
+        context: Get.context!,
+        alertType: StylishDialogType.ERROR,
+        title: const Text('No Internet Connection'),
+        content: const Text('Please connect too the internet...'),
+        confirmButton: ElevatedButton(
+          style: ButtonStyle(
+              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8))),
+              backgroundColor:
+                  MaterialStateProperty.all(AppColors.primaryColor)),
+          onPressed: () {
+            goBack(Get.context!);
+          },
+          child: const Padding(
+            padding: EdgeInsets.only(left: 40, right: 40, top: 10, bottom: 10),
+            child: Text('Ok',
+                style: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Poppin',
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500)),
+          ),
+        ),
+      ).show();
       return;
-    } */
+    }
+
     photo = await picker.pickImage(
         source: ImageSource.camera,
         maxHeight: 480,
@@ -96,6 +123,35 @@ As a highly skilled farmer, Could you kindly help me with the following inquirie
 
   Future<String> getHarvestPredictionText(
       String cropName, String location) async {
+    if (!await hasInternetConnection()) {
+      StylishDialog(
+        context: Get.context!,
+        alertType: StylishDialogType.ERROR,
+        title: const Text('No Internet Connection'),
+        content: const Text('Please connect too the internet...'),
+        confirmButton: ElevatedButton(
+          style: ButtonStyle(
+              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8))),
+              backgroundColor:
+                  MaterialStateProperty.all(AppColors.primaryColor)),
+          onPressed: () {
+            goBack(Get.context!);
+          },
+          child: const Padding(
+            padding: EdgeInsets.only(left: 40, right: 40, top: 10, bottom: 10),
+            child: Text('Ok',
+                style: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Poppin',
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500)),
+          ),
+        ),
+      ).show();
+      return 'No Internet Connection...';
+    }
+
     final inputPrompt = """
 As a highly skilled farmer, Could you assist me with harvest predictions for $cropName grown in $location? I'm seeking guidance on how to effectively harvest the crop, the expected duration of the harvest period, optimal timing for harvesting, recommended methods for preserving and storing the produce, along with any additional recommendations and relevant disclaimers at the end:
 
