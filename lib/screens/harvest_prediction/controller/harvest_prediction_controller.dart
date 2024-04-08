@@ -73,7 +73,7 @@ As a highly skilled farmer, Could you kindly help me with the following inquirie
 
 **Guidelines:**
 
-**Crop Identification and Location:** Please identify the crop depicted in the provided image and specify its cultivation location.
+**Crop Identification and Location:** Please identify the crop with emoji depicted in the provided image and specify its cultivation location.
 
 **Harvest Timing::** When the crop is mature and ready to be harvested in that location.
 
@@ -92,6 +92,8 @@ As a highly skilled farmer, Could you kindly help me with the following inquirie
 **Preservation and storage:** How should the harvested crop be preserved and stored to maintain its quality?
 
 **Recommendations:** What are the best practices for managing the harvest and preventing diseases in this crop?
+
+**Links:** Get recent and relevant links that will help the farmer.
 
 **Disclaimer:**
  *"Please note that the information provided is based on general agricultural knowledge and should not replace professional agricultural advice. Consult with qualified agricultural experts for specific recommendations considering local conditions."*
@@ -157,7 +159,7 @@ As a highly skilled farmer, Could you assist me with harvest predictions for $cr
 
 **Guidelines:**
 
-**Crop Identification and Location:** Provide name of crop and location
+**Crop Identification and Location:** Provide name of crop with emoji if any found and location
 
 **Harvest Timing::** When the crop is mature and ready to be harvested in that location.
 
@@ -176,6 +178,8 @@ As a highly skilled farmer, Could you assist me with harvest predictions for $cr
 **Preservation and storage:** How to preserve and store the harvested crop.
 
 **Recommendations:** Best practices for harvest management and disease prevention.
+
+**Links:** Get recent and relevant links that will help the farmer.
 
 **Disclaimer:**
   *"Please note that the information provided is based on general agricultural knowledge and should not replace professional agricultural advice. Consult with qualified agricultural experts for specific recommendations considering local conditions."*

@@ -8,6 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:toastification/toastification.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 final log = Logger(
   printer: PrettyPrinter(
@@ -172,4 +173,16 @@ Future<bool> hasInternetConnection() async {
     return Future.value(false);
   }
   return false;
+}
+
+Future<void> openLink(String link) async {
+  final url = Uri.parse(link);
+
+  try {
+    await launchUrl(
+      url,
+    );
+  } catch (e) {
+    logDebug('Error launching url.', level: Level.error);
+  }
 }

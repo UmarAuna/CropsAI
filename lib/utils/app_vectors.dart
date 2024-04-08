@@ -11,4 +11,7 @@ class AppVectors {
   static const String icDragModal = 'assets/svgs/ic_drag_modal.svg';
   static const String iconCloseOutline = 'assets/svgs/ic_close_outline.svg';
   static const String appLogo = 'assets/svgs/ic_app_icon.svg';
+  static const String asset1 = 'assets/svgs/asset1.svg';
+  static const String asset2 = 'assets/svgs/asset2.svg';
+  static const String asset3 = 'assets/svgs/asset3.svg';
 }

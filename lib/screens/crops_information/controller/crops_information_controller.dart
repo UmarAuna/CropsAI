@@ -84,6 +84,8 @@ As a highly skilled farmer please Identify the name of the crop in the image and
 
 **Common pests and diseases:** Information about common pests and diseases that affect each crop, as well as prevention and treatment methods.
 
+**Links:** Get recent and relevant links that will help the farmer.
+
 **Disclaimer:**
   *"Please note that the information provided is based on general agricultural knowledge and should not replace professional agricultural advice. Consult with qualified agricultural experts for specific recommendations considering local conditions."*
 """);
@@ -158,6 +160,8 @@ As a highly skilled farmer please help provide comprehensive information regardi
 **Water needs:** Recommended irrigation practices based on weather conditions and soil type.
 
 **Common pests and diseases:** Information about common pests and diseases that affect each crop, as well as prevention and treatment methods.
+
+**Links:** Get recent and relevant links that will help the farmer.
 
 **Disclaimer:**
   *"Please note that the information provided is based on general agricultural knowledge and should not replace professional agricultural advice. Consult with qualified agricultural experts for specific recommendations considering local conditions."*

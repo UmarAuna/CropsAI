@@ -9,4 +9,5 @@ class AppColors {
   static const black = Colors.black;
   static const transparent = Colors.transparent;
   static const grey = Color(0xFF79747E);
+  static const onboardingTextColor = Color(0xFF1E3054);
 }

@@ -4,6 +4,7 @@ import 'package:crops_ai/utils/app_colors.dart';
 import 'package:crops_ai/utils/app_vectors.dart';
 import 'package:crops_ai/utils/util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -17,19 +18,24 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final homeController = Get.put<HomeController>(HomeController());
+
+  @override
+  void dispose() {
+    // TODO: fix this
+    super.dispose();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive, overlays: []);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      /*  appBar: AppBar(
-        title: const Text('HomePage',
-            style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 13,
-                color: AppColors.primaryColor,
-                fontFamily: 'Poppins')),
-        centerTitle: true,
-      ), */
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: AppColors.white,
+        foregroundColor: AppColors.white,
+        //systemOverlayStyle: SystemUiOverlayStyle.dark,
+      ),
       body: SafeArea(
         child: Container(
             width: MediaQuery.of(context).size.width,

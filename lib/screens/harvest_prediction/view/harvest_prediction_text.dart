@@ -23,6 +23,14 @@ class _HarvestPredictionTextState extends State<HarvestPredictionText> {
             selectable: true,
             data: widget.harvestPredictionController.responseText.value,
             padding: const EdgeInsets.symmetric(horizontal: 12),
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
+            ),
+            onTapLink: (text, href, title) {
+              if (href != null) {
+                openLink(href);
+              }
+            },
           ),
         ),
         10.heightSpace,

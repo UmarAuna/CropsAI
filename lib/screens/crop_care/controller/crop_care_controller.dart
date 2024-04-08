@@ -80,6 +80,8 @@ As a highly skilled farmer Please, Identify the name of the crop in the image an
 
 **Care practices:** Watering, fertilization, pest control, and other necessary care practices.
 
+**Links:** Get recent and relevant links that will help the farmer.
+
 **Disclaimer:**
   *"Please note that the information provided is based on general agricultural knowledge and should not replace professional agricultural advice. Consult with qualified agricultural experts for specific recommendations considering local conditions."*
 """);
@@ -150,6 +152,8 @@ As a highly skilled farmer Please help me with information about growing, durati
 **Duration:** How long it takes for the crop to mature.
 
 **Care practices:** Watering, fertilization, pest control, and other necessary care practices.
+
+**Links:** Get recent and relevant links that will help the farmer.
 
 **Disclaimer:**
   *"Please note that the information provided is based on general agricultural knowledge and should not replace professional agricultural advice. Consult with qualified agricultural experts for specific recommendations considering local conditions."*

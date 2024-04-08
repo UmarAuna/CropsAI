@@ -85,6 +85,8 @@ As a highly skilled farmer please Identify the pest in the image, the name of th
  **Recommended pesticides:** Information about suitable pesticides for the specific pest or disease, including organic options.
 
  **Other relevant information:** Is there any other information that might be helpful in killing the pest, or the use of any chemicals or fertilizers?
+
+ **Links:** Get recent and relevant links that will help the farmer.
  
  **Disclaimer:**
   *"Please note that the information provided is based on plant pathology analysis and should not replace professional agricultural advice. Consult with qualified agricultural experts before implementing any strategies or treatments."*
@@ -180,6 +182,8 @@ As a highly skilled farmer please Identify and diagnose the crop infected in the
 
 **Follow-Up and Monitoring:** Advise farmers to monitor the treated crops regularly and assess the effectiveness of the implemented strategies. Encourage proactive measures to prevent disease recurrence and maintain crop health.
 
+**Links:** Get recent and relevant links that will help the farmer.
+
 **Disclaimer:**
   *"Please note that the information provided is based on plant pathology analysis and should not replace professional agricultural advice. Consult with qualified agricultural experts before implementing any strategies or treatments."*
 """);
@@ -262,6 +266,8 @@ As a highly skilled farmer please diagnose crops infected with this $disease; co
 **Other relevant information:** Is there any other information that might be helpful in diagnosing the disease, such as the presence of pests or diseases, or the use of any chemicals or fertilizers?
 
 **Follow-Up and Monitoring:** Advise farmers to monitor the treated crops regularly and assess the effectiveness of the implemented strategies. Encourage proactive measures to prevent disease recurrence and maintain crop health.
+
+**Links:** Get recent and relevant links that will help the farmer.
 
 **Disclaimer:**
   *"Please note that the information provided is based on plant pathology analysis and should not replace professional agricultural advice. Consult with qualified agricultural experts before implementing any strategies or treatments."*

@@ -8,6 +8,7 @@ import 'package:crops_ai/screens/home/controller/home_controller.dart';
 import 'package:crops_ai/main_controller.dart';
 import 'package:crops_ai/routes.dart';
 import 'package:crops_ai/screens/home/view/splash_screen_page.dart';
+import 'package:crops_ai/screens/services/storage_services.dart';
 import 'package:crops_ai/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,6 +23,7 @@ Future<void> main() async {
 }
 
 Future<void> initServices() async {
+  await Get.putAsync<StorageServices>(() => StorageServices().init());
   Get.lazyPut<MainController>(() => MainController());
   Get.lazyPut<HomeController>(() => HomeController());
   Get.lazyPut<DiseaseDiagnosisController>(() => DiseaseDiagnosisController());
@@ -140,119 +142,3 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 }
-/* class _MyHomePageState extends State<MyHomePage> {
-  final ImagePicker picker = ImagePicker();
-  final controller = TextEditingController();
-  final gemini = Gemini.instance;
-  String? searchedText, result, _finishReason;
-  bool _loading = false;
-
-  String? get finishReason => _finishReason;
-  bool get loading => _loading;
-
-  Uint8List? selectedImage;
-
-  set finishReason(String? set) {
-    if (set != _finishReason) {
-      setState(() => _finishReason = set);
-    }
-  }
-
-  set loading(bool set) {
-    if (set != loading) {
-      setState(() => _loading = set);
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          //title: const Text('Back'),
-          ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            if (searchedText != null)
-              MaterialButton(
-                  color: Colors.blue.shade700,
-                  onPressed: () {
-                    setState(() {
-                      searchedText = null;
-                      result = null;
-                    });
-                  },
-                  child: Text('search: $searchedText')),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      flex: 2,
-                      child: loading
-                          //? Lottie.asset('assets/lottie/ai.json')
-                          ? const SizedBox(
-                              width: 40,
-                              height: 40,
-                              child: CircularProgressIndicator())
-                          : result != null
-                              ? Markdown(
-                                  data: result!,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 12),
-                                )
-                              : const Center(
-                                  child: Text('Search something!'),
-                                ),
-                    ),
-                    if (selectedImage != null)
-                      Expanded(
-                        flex: 1,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(32),
-                          child: Image.memory(
-                            selectedImage!,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      )
-                  ],
-                ),
-              ),
-            ),
-            ChatInputBox(
-              controller: controller,
-              onClickCamera: () async {
-                // Capture a photo.
-                final XFile? photo =
-                    await picker.pickImage(source: ImageSource.camera);
-
-                if (photo != null) {
-                  photo.readAsBytes().then((value) => setState(() {
-                        selectedImage = value;
-                      }));
-                }
-              },
-              onSend: () {
-                if (controller.text.isNotEmpty && selectedImage != null) {
-                  searchedText = controller.text;
-                  controller.clear();
-                  loading = true;
-
-                  gemini.textAndImage(
-                      text: searchedText!,
-                      images: [selectedImage!]).then((value) {
-                    result = value?.content?.parts?.last.text;
-                    loading = false;
-                  });
-                }
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-} */

@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:crops_ai/screens/home/view/home_page.dart';
+import 'package:crops_ai/screens/home/view/onboarding_page.dart';
 import 'package:crops_ai/utils/app_colors.dart';
 import 'package:crops_ai/utils/app_vectors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SplashScreenPage extends StatefulWidget {
@@ -41,8 +43,13 @@ class _SplashScreenPageState extends State<SplashScreenPage>
     Timer(const Duration(seconds: 4), () {
       /// NAVIAGTING TO LOGIN SCREEN
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const HomePage()));
+          MaterialPageRoute(builder: (context) => const OnboardingPage()));
+      /*  Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const HomePage())); */
     });
+    // TODO: fix this
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: [SystemUiOverlay.bottom]);
   }
 
   @override
