@@ -1,8 +1,4 @@
-import 'dart:async';
-
 import 'package:crops_ai/screens/home/controller/home_controller.dart';
-import 'package:crops_ai/screens/home/view/home_page.dart';
-import 'package:crops_ai/screens/home/view/onboarding_page.dart';
 import 'package:crops_ai/utils/app_colors.dart';
 import 'package:crops_ai/utils/app_vectors.dart';
 import 'package:flutter/material.dart';
