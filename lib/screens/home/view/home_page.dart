@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:crops_ai/screens/home/controller/home_controller.dart';
 import 'package:crops_ai/screens/home/widget/home_card.dart';
 import 'package:crops_ai/utils/app_colors.dart';
@@ -7,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class HomePage extends StatefulWidget {
   static const id = 'home_page';
@@ -18,6 +21,27 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final homeController = Get.put<HomeController>(HomeController());
+
+  PackageInfo? packageInfo;
+  String _version = '';
+  //String message = '';
+
+  Future<void> init() async {
+    getVersion();
+  }
+
+  Future<void> getVersion() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    setState(() {
+      _version = packageInfo.version;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    init();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +95,21 @@ class _HomePageState extends State<HomePage> {
                                             const HomeCard(),
                                           ]),
                                     ))),
+                            InkWell(
+                              onDoubleTap: () {
+                                if (Platform.isAndroid) {
+                                  homeController.checkForUpdates();
+                                }
+                              },
+                              child: Text('v.$_version',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 13,
+                                      color: AppColors.primaryColor
+                                          .withOpacity(0.5),
+                                      fontFamily: 'Poppins')),
+                            ),
+                            10.heightSpace,
                             InkWell(
                               onTap: () {
                                 logDebug('message');

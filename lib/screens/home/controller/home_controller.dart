@@ -10,6 +10,8 @@ import 'package:crops_ai/utils/app_vectors.dart';
 import 'package:crops_ai/utils/util.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shorebird_code_push/shorebird_code_push.dart';
+import 'package:toastification/toastification.dart';
 
 class HomeController extends GetxController {
   final storageService = Get.find<StorageServices>();
@@ -18,6 +20,7 @@ class HomeController extends GetxController {
   final nameOfCropCareController = TextEditingController();
   final nameOfCropHarvestController = TextEditingController();
   final locationOfCropHarvestController = TextEditingController();
+  final shorebirdCodePush = ShorebirdCodePush();
 
   final isDiseaseNameSelected = 'disease_image'.obs;
   final isCropInfoSelected = 'crop_image'.obs;
@@ -112,4 +115,30 @@ class HomeController extends GetxController {
           'Harvest prediction tries to predict when a certain crop is going to be harvested by providing location of farm, it returns harvesting time, duration of harvest, harvest time-line and many more',
     ),
   ];
+
+  Future<void> checkForUpdates() async {
+    // Get the current patch number and print it to the console. It will be
+    // null if no patches are installed.
+    shorebirdCodePush
+        .currentPatchNumber()
+        .then((value) => logDebug('current patch number is $value'));
+    // Check whether a patch is available to install.
+    final isUpdateAvailable =
+        await shorebirdCodePush.isNewPatchAvailableForDownload();
+
+    if (isUpdateAvailable) {
+      // Download the new patch if it's available.
+      await shorebirdCodePush.downloadUpdateIfAvailable();
+      showToastification(
+        'App Updated Successfully',
+        'Please restart the app',
+        type: ToastificationType.success,
+      );
+    } else {
+      showToastification(
+        'No update',
+        'Sorry no update available, please try again later',
+      );
+    }
+  }
 }
