@@ -89,7 +89,7 @@ As a highly skilled farmer please Identify the pest in the image, the name of th
  **Links:** Get recent and relevant links that will help the farmer.
  
  **Disclaimer:**
-  *"Please note that the information provided is based on plant pathology analysis and should not replace professional agricultural advice. Consult with qualified agricultural experts before implementing any strategies or treatments."*
+  *"Please note that the information provided is based on general agricultural knowledge and should not replace professional agricultural advice. Consult with qualified agricultural experts for specific recommendations considering local conditions."*
 """);
 
     // Generate text using the GenerativeModel instance.
@@ -185,7 +185,7 @@ As a highly skilled farmer please Identify and diagnose the crop infected in the
 **Links:** Get recent and relevant links that will help the farmer.
 
 **Disclaimer:**
-  *"Please note that the information provided is based on plant pathology analysis and should not replace professional agricultural advice. Consult with qualified agricultural experts before implementing any strategies or treatments."*
+  *"Please note that the information provided is based on general agricultural knowledge and should not replace professional agricultural advice. Consult with qualified agricultural experts for specific recommendations considering local conditions."*
 """);
 
     // Generate text using the GenerativeModel instance.
@@ -270,7 +270,7 @@ As a highly skilled farmer please diagnose crops infected with this $disease; co
 **Links:** Get recent and relevant links that will help the farmer.
 
 **Disclaimer:**
-  *"Please note that the information provided is based on plant pathology analysis and should not replace professional agricultural advice. Consult with qualified agricultural experts before implementing any strategies or treatments."*
+  *"Please note that the information provided is based on general agricultural knowledge and should not replace professional agricultural advice. Consult with qualified agricultural experts for specific recommendations considering local conditions."*
 """;
     // Generate text using the GenerativeModel instance.
     try {

@@ -7,6 +7,7 @@ class AppColors {
   static const error = Color(0xFFF01F0E);
   static const white = Colors.white;
   static const black = Colors.black;
+  static const black100 = Color(0xFF1B1B1B);
   static const transparent = Colors.transparent;
   static const grey = Color(0xFF79747E);
   static const onboardingTextColor = Color(0xFF1E3054);

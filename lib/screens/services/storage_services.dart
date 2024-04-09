@@ -14,27 +14,10 @@ class StorageServices extends GetxService {
     return this;
   }
 
-  //storageService.setIsFirstTime(true);
   void setIsFirstTime(bool value) {
     saveBoolean(isFirstTime, value);
   }
 
-//TODO: @Umar Continue here please
-/* Future<void> navigateToOnboardingPage(BuildContext? context) async {
-    // bool isFirstTimeUser = storageService.readBoolean('isFirstTimeUser');
-    logDebug('Splash Status ${storageService.getIsFirstTimeUser().toString()}',
-        level: Level.warning);
-
-    Future.delayed(const Duration(seconds: 1), () {
-      if (storageService.getIsFirstTimeUser() ?? false) {
-        return Navigator.pushReplacementNamed(
-            context ?? Get.context!, LoginPage.id);
-      } else {
-        return Navigator.pushReplacementNamed(
-            context ?? Get.context!, OnboardingPage.id);
-      }
-    });
-  } */
   bool? getIsFirstTime() {
     final value = readBoolean(isFirstTime);
     return value;

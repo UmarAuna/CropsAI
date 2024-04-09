@@ -1,7 +1,6 @@
 import 'package:crops_ai/screens/home/controller/home_controller.dart';
 import 'package:crops_ai/utils/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -17,21 +16,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
   final homeController = Get.put<HomeController>(HomeController());
 
   @override
-  void initState() {
-    super.initState();
-    // TODO: fix this
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: [SystemUiOverlay.bottom]);
-  }
-
-  /*  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive, overlays: []);
-  } */
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
@@ -39,23 +23,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
         padding: const EdgeInsets.all(20.0),
         child: Stack(
           children: [
-            InkWell(
-              onTap: () {
-                homeController.goToHomePage(context);
-              },
-              child: const Padding(
-                padding: EdgeInsets.only(top: 22),
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Text('Skip',
-                      style: TextStyle(
-                          fontSize: 13,
-                          fontFamily: 'Poppin',
-                          color: AppColors.primaryColor,
-                          fontWeight: FontWeight.w500)),
-                ),
-              ),
-            ),
             PageView.builder(
               itemCount: homeController.demoData.length,
               scrollDirection: Axis.horizontal,
@@ -65,19 +32,19 @@ class _OnboardingPageState extends State<OnboardingPage> {
               itemBuilder: (context, index) {
                 return Column(
                   children: [
-                    const SizedBox(height: 50),
+                    const SizedBox(height: 70),
                     SvgPicture.asset(homeController.demoData[index].image),
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 50),
                     Text(homeController.demoData[index].title,
                         style: const TextStyle(
-                            fontSize: 35,
+                            fontSize: 20,
                             fontFamily: 'Poppin',
-                            color: AppColors.primaryColor,
-                            fontWeight: FontWeight.w600)),
+                            color: AppColors.black100,
+                            fontWeight: FontWeight.w800)),
                     const SizedBox(height: 10),
                     Text(homeController.demoData[index].description,
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 14,
                             fontFamily: 'Poppin',
                             color:
                                 AppColors.onboardingTextColor.withOpacity(0.5),
@@ -98,7 +65,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       style: ButtonStyle(
                           shape: MaterialStateProperty.all(
                               RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15))),
+                                  borderRadius: BorderRadius.circular(10))),
                           backgroundColor: MaterialStateProperty.all(
                               AppColors.primaryColor)),
                       onPressed: () {
@@ -106,7 +73,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       },
                       child: const Padding(
                         padding: EdgeInsets.only(
-                            left: 40, right: 40, top: 20, bottom: 20),
+                            left: 15, right: 15, top: 15, bottom: 15),
                         child: Text('Get Started',
                             style: TextStyle(
                                 fontSize: 14,
@@ -138,7 +105,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                             margin: const EdgeInsets.symmetric(horizontal: 5),
                             decoration: BoxDecoration(
                               color: homeController.currentPage.value == index
-                                  ? Colors.black
+                                  ? AppColors.primaryColor
                                   : Colors
                                       .grey, // Adjust active and inactive dot colors
                               borderRadius: BorderRadius.circular(5),

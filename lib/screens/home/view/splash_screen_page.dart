@@ -1,12 +1,13 @@
 import 'dart:async';
 
+import 'package:crops_ai/screens/home/controller/home_controller.dart';
 import 'package:crops_ai/screens/home/view/home_page.dart';
 import 'package:crops_ai/screens/home/view/onboarding_page.dart';
 import 'package:crops_ai/utils/app_colors.dart';
 import 'package:crops_ai/utils/app_vectors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class SplashScreenPage extends StatefulWidget {
   static const id = 'splash_screen_page';
@@ -18,6 +19,8 @@ class SplashScreenPage extends StatefulWidget {
 
 class _SplashScreenPageState extends State<SplashScreenPage>
     with SingleTickerProviderStateMixin {
+  final homeController = Get.put<HomeController>(HomeController());
+
   /// ANIMATION CONTROLLER
   late AnimationController _controller;
 
@@ -39,23 +42,13 @@ class _SplashScreenPageState extends State<SplashScreenPage>
     /// STARTING THE ANIMATION
     _controller.forward();
 
-    /// TIMER FOR SPLASH DURATION
-    Timer(const Duration(seconds: 4), () {
-      /// NAVIAGTING TO LOGIN SCREEN
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const OnboardingPage()));
-      /*  Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const HomePage())); */
-    });
-    // TODO: fix this
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: [SystemUiOverlay.bottom]);
+    homeController.goToHomePageOrOnboardingPage(context);
   }
 
   @override
   void dispose() {
-    _controller.dispose();
     super.dispose();
+    _controller.dispose();
   }
 
   @override
