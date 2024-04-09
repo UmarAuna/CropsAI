@@ -2,5 +2,6 @@
   "workbench.colorCustomizations": {
     "editor.lineHighlightBackground": "#1073cf2d",
     "editor.lineHighlightBorder": "#9fced11f"
-  }
+  },
+  "dart.flutterSdkPath": "~/Downloads/flutter_flavours/flutter3.19.5-stable"
 }
