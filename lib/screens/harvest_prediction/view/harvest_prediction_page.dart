@@ -61,23 +61,31 @@ class _HarvestPredictionPageState extends State<HarvestPredictionPage> {
         body: widget.isCropHarvestSelected == 'crop_text'
             ? harvestPredictionController.loading.value
                 ? const PageLoader()
-                : WillPopScope(
-                    onWillPop: () async {
+                : PopScope(
+                    canPop:
+                        true, //When false, blocks the current route from being popped.
+                    onPopInvoked: (didPop) {
+                      if (didPop) {
+                        return;
+                      }
                       harvestPredictionController.responseText.value = '';
                       goBack(context);
-                      return true;
                     },
                     child: HarvestPredictionText(
                         harvestPredictionController:
                             harvestPredictionController))
             : harvestPredictionController.loading.value
                 ? const PageLoader()
-                : WillPopScope(
-                    onWillPop: () async {
+                : PopScope(
+                    canPop:
+                        true, //When false, blocks the current route from being popped.
+                    onPopInvoked: (didPop) {
+                      if (didPop) {
+                        return;
+                      }
                       harvestPredictionController.responseText.value = '';
                       harvestPredictionController.photo = null;
                       goBack(context);
-                      return true;
                     },
                     child: HarvestPredictionImage(
                         harvestPredictionController:

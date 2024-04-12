@@ -26,7 +26,6 @@ class HomeController extends GetxController {
   final isCropInfoSelected = 'crop_image'.obs;
   final isCropCareSelected = 'crop_image'.obs;
   final isCropHarvestSelected = 'crop_image'.obs;
-  //final isCropLocationSelected = ''.obs;
   final pageIndex = 0.obs;
   RxInt currentPage = 0.obs;
 
@@ -122,6 +121,7 @@ class HomeController extends GetxController {
     shorebirdCodePush
         .currentPatchNumber()
         .then((value) => logDebug('current patch number is $value'));
+
     // Check whether a patch is available to install.
     final isUpdateAvailable =
         await shorebirdCodePush.isNewPatchAvailableForDownload();

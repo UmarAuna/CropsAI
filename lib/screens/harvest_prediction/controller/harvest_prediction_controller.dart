@@ -14,8 +14,7 @@ class HarvestPredictionController extends GetxController {
   final loading = false.obs;
   final ImagePicker picker = ImagePicker();
   XFile? photo;
-
-  // Create a GenerativeModel instance with your API key and model name.
+ 
   final model = GenerativeModel(
     model: 'gemini-pro',
     apiKey: AppConfig.apiKey,
@@ -67,7 +66,6 @@ class HarvestPredictionController extends GetxController {
         imageQuality: 60);
     final imageBytes = await File(photo!.path).readAsBytes();
     logDebug('Image bytes: $imageBytes');
-    //As a highly skilled farmer, Could you Please assist me Identify the name of the crop in the image and assist me with harvest predictions for the crop grown in $location. I'm seeking guidance on how to effectively harvest the crop following the guidelines below and relevant disclaimers at the end:
     final inputPrompt = TextPart("""
 As a highly skilled farmer, Could you kindly help me with the following inquiries regarding crop cultivation? by following the guidelines below and relevant disclaimers at the end:
 
@@ -98,8 +96,7 @@ As a highly skilled farmer, Could you kindly help me with the following inquirie
 **Disclaimer:**
  *"Please note that the information provided is based on general agricultural knowledge and should not replace professional agricultural advice. Consult with qualified agricultural experts for specific recommendations considering local conditions."*
 """);
-
-    // Generate text using the GenerativeModel instance.
+   
 
     try {
       loading.value = true;
@@ -119,8 +116,6 @@ As a highly skilled farmer, Could you kindly help me with the following inquirie
       responseText.value = 'message: ${e.toString()}';
       //return responseText.value = 'Error generating text';
     }
-
-    //print(response.text);
   }
 
   Future<String> getHarvestPredictionText(
@@ -184,7 +179,6 @@ As a highly skilled farmer, Could you assist me with harvest predictions for $cr
 **Disclaimer:**
   *"Please note that the information provided is based on general agricultural knowledge and should not replace professional agricultural advice. Consult with qualified agricultural experts for specific recommendations considering local conditions."*
 """;
-    // Generate text using the GenerativeModel instance.
     try {
       loading.value = true;
       final content = [Content.text(inputPrompt)];
@@ -197,6 +191,5 @@ As a highly skilled farmer, Could you assist me with harvest predictions for $cr
       debugPrint(e.toString());
       return responseText.value = 'Error generating text';
     }
-    //print(response.text);
   }
 }

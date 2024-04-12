@@ -1,9 +1,11 @@
+import 'package:crops_ai/utils/env.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
 class AppConfig {
   AppConfig._(); // ! Private constructor to prevent instantiation
 
-  static const apiKey = 'AIzaSyAYKMCOfCEuqTudatKKPJDx8gQ3e4VrYeM';
+  //static const apiKey = 'AIzaSyAYKMCOfCEuqTudatKKPJDx8gQ3e4VrYeM';
+  static final apiKey = Env.geminiApiKey;
 
   static final generationConfig = GenerationConfig(
     //stopSequences: ["red"],

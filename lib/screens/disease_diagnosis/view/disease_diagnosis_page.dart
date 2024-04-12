@@ -59,11 +59,15 @@ class _DiseaseDiagnosisPageState extends State<DiseaseDiagnosisPage> {
             return Obx(() {
               return diseaseDiagnoseController.loading.value
                   ? const PageLoader()
-                  : WillPopScope(
-                      onWillPop: () async {
+                  : PopScope(
+                      canPop:
+                          true, //When false, blocks the current route from being popped.
+                      onPopInvoked: (didPop) {
+                        if (didPop) {
+                          return;
+                        }
                         diseaseDiagnoseController.responseText.value = '';
                         goBack(context);
-                        return true;
                       },
                       child: DiagnosisText(
                           diseaseDiagnosisController:
@@ -74,12 +78,16 @@ class _DiseaseDiagnosisPageState extends State<DiseaseDiagnosisPage> {
             return Obx(() {
               return diseaseDiagnoseController.loading.value
                   ? const PageLoader()
-                  : WillPopScope(
-                      onWillPop: () async {
+                  : PopScope(
+                      canPop:
+                          true, //When false, blocks the current route from being popped.
+                      onPopInvoked: (didPop) {
+                        if (didPop) {
+                          return;
+                        }
                         diseaseDiagnoseController.responseText.value = '';
                         diseaseDiagnoseController.photo = null;
                         goBack(context);
-                        return true;
                       },
                       child: DiagnosisImage(
                           diseaseDiagnosisController:
@@ -90,12 +98,16 @@ class _DiseaseDiagnosisPageState extends State<DiseaseDiagnosisPage> {
             return Obx(() {
               return diseaseDiagnoseController.loading.value
                   ? const PageLoader()
-                  : WillPopScope(
-                      onWillPop: () async {
+                  : PopScope(
+                      canPop:
+                          true, //When false, blocks the current route from being popped.
+                      onPopInvoked: (didPop) {
+                        if (didPop) {
+                          return;
+                        }
                         diseaseDiagnoseController.responseText.value = '';
                         diseaseDiagnoseController.photo = null;
                         goBack(context);
-                        return true;
                       },
                       child: DiagnosisPest(
                           diseaseDiagnosisController:

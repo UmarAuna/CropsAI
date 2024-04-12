@@ -15,7 +15,6 @@ class CropsInformationController extends GetxController {
   final ImagePicker picker = ImagePicker();
   XFile? photo;
 
-  // Create a GenerativeModel instance with your API key and model name.
   final model = GenerativeModel(
     model: 'gemini-pro',
     apiKey: AppConfig.apiKey,
@@ -90,8 +89,6 @@ As a highly skilled farmer please Identify the name of the crop in the image and
   *"Please note that the information provided is based on general agricultural knowledge and should not replace professional agricultural advice. Consult with qualified agricultural experts for specific recommendations considering local conditions."*
 """);
 
-    // Generate text using the GenerativeModel instance.
-
     try {
       loading.value = true;
       final content = [
@@ -110,8 +107,6 @@ As a highly skilled farmer please Identify the name of the crop in the image and
       responseText.value = 'message: ${e.toString()}';
       //return responseText.value = 'Error generating text';
     }
-
-    //print(response.text);
   }
 
   Future<String> getCropInformationText(String nameOfCrop) async {
@@ -179,6 +174,5 @@ As a highly skilled farmer please help provide comprehensive information regardi
       debugPrint(e.toString());
       return responseText.value = 'Error generating text';
     }
-    //print(response.text);
   }
 }

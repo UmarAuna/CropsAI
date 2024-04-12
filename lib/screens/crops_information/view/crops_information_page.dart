@@ -54,22 +54,30 @@ class _CropsInformationPageState extends State<CropsInformationPage> {
         body: widget.isCropInfoSelected == 'crop_text'
             ? cropsInfoController.loading.value
                 ? const PageLoader()
-                : WillPopScope(
-                    onWillPop: () async {
+                : PopScope(
+                    canPop:
+                        true, //When false, blocks the current route from being popped.
+                    onPopInvoked: (didPop) {
+                      if (didPop) {
+                        return;
+                      }
                       cropsInfoController.responseText.value = '';
                       goBack(context);
-                      return true;
                     },
                     child:
                         CropsInfoText(cropsInfoController: cropsInfoController))
             : cropsInfoController.loading.value
                 ? const PageLoader()
-                : WillPopScope(
-                    onWillPop: () async {
+                : PopScope(
+                    canPop:
+                        true, //When false, blocks the current route from being popped.
+                    onPopInvoked: (didPop) {
+                      if (didPop) {
+                        return;
+                      }
                       cropsInfoController.responseText.value = '';
                       cropsInfoController.photo = null;
                       goBack(context);
-                      return true;
                     },
                     child: CropsInfoImage(
                         cropsInfoController: cropsInfoController)),

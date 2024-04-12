@@ -35,15 +35,23 @@ class HomeCard extends StatelessWidget {
                         ),
                       ),
                       isScrollControlled: true,
-                      isDismissible: true,
                       enableDrag: true,
                       context: context,
                       builder: (builder) {
-                        return SingleChildScrollView(
+                        return Container(
+                          padding: EdgeInsets.only(
+                            bottom: MediaQuery.of(context).viewInsets.bottom,
+                          ),
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints(maxHeight: 500),
+                            child: const DiseaseDiagnosisModal(),
+                          ),
+                        );
+                        /* return SingleChildScrollView(
                             padding: EdgeInsets.only(
                                 bottom:
                                     MediaQuery.of(context).viewInsets.bottom),
-                            child: const DiseaseDiagnosisModal());
+                            child: const DiseaseDiagnosisModal()); */
                       });
                 } else if (index == 1) {
                   showModalBottomSheet(
@@ -54,15 +62,18 @@ class HomeCard extends StatelessWidget {
                         ),
                       ),
                       isScrollControlled: true,
-                      isDismissible: true,
                       enableDrag: true,
                       context: context,
                       builder: (builder) {
-                        return SingleChildScrollView(
-                            padding: EdgeInsets.only(
-                                bottom:
-                                    MediaQuery.of(context).viewInsets.bottom),
-                            child: const CropsInformationModal());
+                        return Container(
+                          padding: EdgeInsets.only(
+                            bottom: MediaQuery.of(context).viewInsets.bottom,
+                          ),
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints(maxHeight: 500),
+                            child: const CropsInformationModal(),
+                          ),
+                        );
                       });
                 } else if (index == 2) {
                   showModalBottomSheet(
@@ -73,15 +84,18 @@ class HomeCard extends StatelessWidget {
                         ),
                       ),
                       isScrollControlled: true,
-                      isDismissible: true,
                       enableDrag: true,
                       context: context,
                       builder: (builder) {
-                        return SingleChildScrollView(
-                            padding: EdgeInsets.only(
-                                bottom:
-                                    MediaQuery.of(context).viewInsets.bottom),
-                            child: const CropCareModal());
+                        return Container(
+                          padding: EdgeInsets.only(
+                            bottom: MediaQuery.of(context).viewInsets.bottom,
+                          ),
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints(maxHeight: 500),
+                            child: const CropCareModal(),
+                          ),
+                        );
                       });
                 } else if (index == 3) {
                   showModalBottomSheet(
@@ -92,15 +106,18 @@ class HomeCard extends StatelessWidget {
                         ),
                       ),
                       isScrollControlled: true,
-                      isDismissible: true,
                       enableDrag: true,
                       context: context,
                       builder: (builder) {
-                        return SingleChildScrollView(
-                            padding: EdgeInsets.only(
-                                bottom:
-                                    MediaQuery.of(context).viewInsets.bottom),
-                            child: const HarvestPredictionModal());
+                        return Container(
+                          padding: EdgeInsets.only(
+                            bottom: MediaQuery.of(context).viewInsets.bottom,
+                          ),
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints(maxHeight: 500),
+                            child: const HarvestPredictionModal(),
+                          ),
+                        );
                       });
                 }
               },
@@ -128,8 +145,6 @@ class HomeCard extends StatelessWidget {
                           SvgPicture.asset(
                             homeCardItem.icon,
                             fit: BoxFit.cover,
-                            /* height: 52,
-                            width: 52, */
                           ),
                           35.widthSpace,
                           SvgPicture.asset(AppVectors.iconArrowRight,

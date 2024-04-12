@@ -52,21 +52,29 @@ class _CropCarePageState extends State<CropCarePage> {
         body: widget.isCropCareSelected == 'crop_text'
             ? cropCareController.loading.value
                 ? const PageLoader()
-                : WillPopScope(
-                    onWillPop: () async {
+                : PopScope(
+                    canPop:
+                        true, //When false, blocks the current route from being popped.
+                    onPopInvoked: (didPop) {
+                      if (didPop) {
+                        return;
+                      }
                       cropCareController.responseText.value = '';
                       goBack(context);
-                      return true;
                     },
                     child: CropCareText(cropCareController: cropCareController))
             : cropCareController.loading.value
                 ? const PageLoader()
-                : WillPopScope(
-                    onWillPop: () async {
+                : PopScope(
+                    canPop:
+                        true, //When false, blocks the current route from being popped.
+                    onPopInvoked: (didPop) {
+                      if (didPop) {
+                        return;
+                      }
                       cropCareController.responseText.value = '';
                       cropCareController.photo = null;
                       goBack(context);
-                      return true;
                     },
                     child:
                         CropCareImage(cropCareController: cropCareController)),
