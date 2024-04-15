@@ -63,7 +63,7 @@ class _DiseaseDiagnosisModalState extends State<DiseaseDiagnosisModal> {
                                 ),
                                 15.widthSpace,
                               ],
-                              const Text('Content Options',
+                              const Text('Disease Diagnosis Options',
                                   style: TextStyle(
                                       fontSize: 15,
                                       fontFamily: 'Poppin',

@@ -59,10 +59,10 @@ class _CropsInformationPageState extends State<CropsInformationPage> {
                         true, //When false, blocks the current route from being popped.
                     onPopInvoked: (didPop) {
                       if (didPop) {
+                        cropsInfoController.responseText.value = '';
+                        goBack(context);
                         return;
                       }
-                      cropsInfoController.responseText.value = '';
-                      goBack(context);
                     },
                     child:
                         CropsInfoText(cropsInfoController: cropsInfoController))
@@ -73,11 +73,11 @@ class _CropsInformationPageState extends State<CropsInformationPage> {
                         true, //When false, blocks the current route from being popped.
                     onPopInvoked: (didPop) {
                       if (didPop) {
+                        cropsInfoController.responseText.value = '';
+                        cropsInfoController.photo = null;
+                        goBack(context);
                         return;
                       }
-                      cropsInfoController.responseText.value = '';
-                      cropsInfoController.photo = null;
-                      goBack(context);
                     },
                     child: CropsInfoImage(
                         cropsInfoController: cropsInfoController)),

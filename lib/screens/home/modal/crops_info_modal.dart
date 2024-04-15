@@ -63,7 +63,7 @@ class _CropsInformationModalState extends State<CropsInformationModal> {
                                 ),
                                 15.widthSpace,
                               ],
-                              const Text('Content Options',
+                              const Text('Crop Information Options',
                                   style: TextStyle(
                                       fontSize: 15,
                                       fontFamily: 'Poppin',

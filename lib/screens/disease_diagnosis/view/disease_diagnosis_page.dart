@@ -64,10 +64,10 @@ class _DiseaseDiagnosisPageState extends State<DiseaseDiagnosisPage> {
                           true, //When false, blocks the current route from being popped.
                       onPopInvoked: (didPop) {
                         if (didPop) {
+                          diseaseDiagnoseController.responseText.value = '';
+                          goBack(context);
                           return;
                         }
-                        diseaseDiagnoseController.responseText.value = '';
-                        goBack(context);
                       },
                       child: DiagnosisText(
                           diseaseDiagnosisController:
@@ -83,11 +83,11 @@ class _DiseaseDiagnosisPageState extends State<DiseaseDiagnosisPage> {
                           true, //When false, blocks the current route from being popped.
                       onPopInvoked: (didPop) {
                         if (didPop) {
+                          diseaseDiagnoseController.responseText.value = '';
+                          diseaseDiagnoseController.photo = null;
+                          goBack(context);
                           return;
                         }
-                        diseaseDiagnoseController.responseText.value = '';
-                        diseaseDiagnoseController.photo = null;
-                        goBack(context);
                       },
                       child: DiagnosisImage(
                           diseaseDiagnosisController:
@@ -103,11 +103,11 @@ class _DiseaseDiagnosisPageState extends State<DiseaseDiagnosisPage> {
                           true, //When false, blocks the current route from being popped.
                       onPopInvoked: (didPop) {
                         if (didPop) {
+                          diseaseDiagnoseController.responseText.value = '';
+                          diseaseDiagnoseController.photo = null;
+                          goBack(context);
                           return;
                         }
-                        diseaseDiagnoseController.responseText.value = '';
-                        diseaseDiagnoseController.photo = null;
-                        goBack(context);
                       },
                       child: DiagnosisPest(
                           diseaseDiagnosisController:

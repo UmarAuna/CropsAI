@@ -72,7 +72,7 @@ class _HarvestPredictionModalState extends State<HarvestPredictionModal> {
                                 ),
                                 15.widthSpace,
                               ],
-                              const Text('Content Options',
+                              const Text('Harvest Prediction Options',
                                   style: TextStyle(
                                       fontSize: 15,
                                       fontFamily: 'Poppin',

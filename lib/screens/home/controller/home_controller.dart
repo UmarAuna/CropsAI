@@ -66,9 +66,9 @@ class HomeController extends GetxController {
         ));
   }
 
-  void goToHomePage(BuildContext context) {
+  void goToHomePage(BuildContext? context) {
     storageService.setIsFirstTime(true);
-    goTo(context, HomePage.id);
+    Navigator.pushReplacementNamed(context ?? Get.context!, HomePage.id);
   }
 
   Future<void> goToHomePageOrOnboardingPage(BuildContext? context) async {

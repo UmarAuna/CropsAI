@@ -15,21 +15,6 @@ class DiseaseDiagnosisController extends GetxController {
   final ImagePicker picker = ImagePicker();
   XFile? photo;
 
-  // Create a GenerativeModel instance with your API key and model name.
-  final model = GenerativeModel(
-    model: 'gemini-pro',
-    apiKey: AppConfig.apiKey,
-    generationConfig: AppConfig.generationConfig,
-    safetySettings: AppConfig.safetySettings,
-  );
-
-  final visionModel = GenerativeModel(
-    model: 'gemini-pro-vision',
-    apiKey: AppConfig.apiKey,
-    generationConfig: AppConfig.generationConfig,
-    safetySettings: AppConfig.safetySettings,
-  );
-
   Future<void> getPestDiagnosisImage() async {
     if (!await hasInternetConnection()) {
       StylishDialog(
@@ -74,6 +59,8 @@ As a highly skilled farmer please Identify the pest in the image, the name of th
 
  **Name of Pest:** Provide name of pest with emoji if any found
 
+ **Risk Level:** Determine the risk level of this disease if any: No Risk, Low Risk, Medium Risk, High Risk with emoji
+
  **Identification:** Detailed information about the pest or disease, including its appearance, behavior, and damage.
 
  **Affected crops:** What types of Crops does this pest affect?
@@ -102,7 +89,7 @@ As a highly skilled farmer please Identify the pest in the image, the name of th
           DataPart('image/jpeg', imageBytes),
         ])
       ];
-      final response = await visionModel.generateContent(content);
+      final response = await AppConfig.visionModel.generateContent(content);
       debugPrint(response.text);
       loading.value = false;
       responseText.value = response.text!;
@@ -164,6 +151,8 @@ As a highly skilled farmer please Identify and diagnose the crop infected in the
 
 **Disease name:** Provide name of disease with emoji if any found
 
+**Risk Level:** Determine the risk level of this disease if any: No Risk, Low Risk, Medium Risk, High Risk with emoji
+
 **Disease type:** What type of crop disease is it?
 
 **Affected crops:** What types of Crops does this disease affect?
@@ -198,7 +187,7 @@ As a highly skilled farmer please Identify and diagnose the crop infected in the
           DataPart('image/jpeg', imageBytes),
         ])
       ];
-      final response = await visionModel.generateContent(content);
+      final response = await AppConfig.visionModel.generateContent(content);
       debugPrint(response.text);
       loading.value = false;
       responseText.value = response.text!;
@@ -249,6 +238,8 @@ As a highly skilled farmer please diagnose crops infected with this $disease; co
 
 **Disease name:** Provide name of disease with emoji if any found
 
+**Risk Level:** Determine the risk level of this disease if any: No Risk, Low Risk, Medium Risk, High Risk with emoji
+
 **Disease type:** What type of crop disease is it?
 
 **Affected crops:** What types of Crops does this disease affect?
@@ -276,7 +267,7 @@ As a highly skilled farmer please diagnose crops infected with this $disease; co
     try {
       loading.value = true;
       final content = [Content.text(inputPrompt)];
-      final response = await model.generateContent(content);
+      final response = await AppConfig.model.generateContent(content);
       debugPrint(response.text);
       loading.value = false;
       return responseText.value = response.text!;

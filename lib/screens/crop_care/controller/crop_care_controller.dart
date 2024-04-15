@@ -15,20 +15,6 @@ class CropCareController extends GetxController {
   final ImagePicker picker = ImagePicker();
   XFile? photo;
 
-  final model = GenerativeModel(
-    model: 'gemini-pro',
-    apiKey: AppConfig.apiKey,
-    generationConfig: AppConfig.generationConfig,
-    safetySettings: AppConfig.safetySettings,
-  );
-
-  final visionModel = GenerativeModel(
-    model: 'gemini-pro-vision',
-    apiKey: AppConfig.apiKey,
-    generationConfig: AppConfig.generationConfig,
-    safetySettings: AppConfig.safetySettings,
-  );
-
   Future<void> getCropCareImage() async {
     if (!await hasInternetConnection()) {
       StylishDialog(
@@ -93,7 +79,7 @@ As a highly skilled farmer Please, Identify the name of the crop in the image an
           DataPart('image/jpeg', imageBytes),
         ])
       ];
-      final response = await visionModel.generateContent(content);
+      final response = await AppConfig.visionModel.generateContent(content);
       debugPrint(response.text);
       loading.value = false;
       responseText.value = response.text!;
@@ -156,7 +142,7 @@ As a highly skilled farmer Please help me with information about growing, durati
     try {
       loading.value = true;
       final content = [Content.text(inputPrompt)];
-      final response = await model.generateContent(content);
+      final response = await AppConfig.model.generateContent(content);
       debugPrint(response.text);
       loading.value = false;
       return responseText.value = response.text!;

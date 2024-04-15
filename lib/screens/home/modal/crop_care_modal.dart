@@ -63,7 +63,7 @@ class _CropCareModalState extends State<CropCareModal> {
                                 ),
                                 15.widthSpace,
                               ],
-                              const Text('Content Options',
+                              const Text('Crop Care Options',
                                   style: TextStyle(
                                       fontSize: 15,
                                       fontFamily: 'Poppin',

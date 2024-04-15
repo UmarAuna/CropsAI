@@ -57,10 +57,10 @@ class _CropCarePageState extends State<CropCarePage> {
                         true, //When false, blocks the current route from being popped.
                     onPopInvoked: (didPop) {
                       if (didPop) {
+                        cropCareController.responseText.value = '';
+                        goBack(context);
                         return;
                       }
-                      cropCareController.responseText.value = '';
-                      goBack(context);
                     },
                     child: CropCareText(cropCareController: cropCareController))
             : cropCareController.loading.value
@@ -70,11 +70,11 @@ class _CropCarePageState extends State<CropCarePage> {
                         true, //When false, blocks the current route from being popped.
                     onPopInvoked: (didPop) {
                       if (didPop) {
+                        cropCareController.responseText.value = '';
+                        cropCareController.photo = null;
+                        goBack(context);
                         return;
                       }
-                      cropCareController.responseText.value = '';
-                      cropCareController.photo = null;
-                      goBack(context);
                     },
                     child:
                         CropCareImage(cropCareController: cropCareController)),
