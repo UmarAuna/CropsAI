@@ -1,0 +1,62 @@
+name: Lint-Code-Test-And-Deploy-Apk
+
+on: push
+
+jobs:
+  #CI
+  build_app:
+    name: 🏃🏽‍♂ Run flutter analyze
+    # The machine, we can also use windows-latest or ubuntu-latest or macos-latest
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: ✅ Checkout Repository/Clones the project on the machine
+        uses: actions/checkout@v3
+
+      - name: 📐 Setup Java 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: "zulu"
+          java-version: "11"
+
+      - name: 📐 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+          flutter-version: "3.13.8"
+          cache: true
+
+      - name: 🏷️🧪 Clean Flutter
+        run: flutter clean
+
+      - name: 📦 Install Dependencies/Fetches proj dependencies from pub
+        run: flutter pub get
+
+      - name: 🏗️ Build and Delete Conflicts
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      - name: 🧹 Format Code
+        run: dart format .
+
+      - name: ⌨️ Run Flutter Analyze
+        run: flutter analyze .
+
+      - name: 🏗️ Build APK
+        run: flutter build apk
+
+      - name: 🏭 Create Release APK
+        run: flutter build apk --release
+
+      - name: 🏭 Create Release
+        uses: ncipollo/release-action@v1.10.0
+        with:
+          artifacts: "build/app/outputs/apk/release/*.apk"
+          tag: v1.0.${{ github.run_number }}
+
+      - name: ☁️ Upload Release APK
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
