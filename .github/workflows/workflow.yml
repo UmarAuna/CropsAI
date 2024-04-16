@@ -47,8 +47,8 @@ jobs:
       - name: ⌨️ Run Flutter Analyze
         run: flutter analyze .
 
-      - name: 🏗️ Build APK
-        run: flutter build apk
+      #- name: 🏗️ Build APK
+      #run: flutter build apk
 
       - name: 🏭 Create Release APK
         run: flutter build apk --release
