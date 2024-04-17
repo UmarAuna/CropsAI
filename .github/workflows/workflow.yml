@@ -38,18 +38,14 @@ jobs:
       #[SEVERE] envied_generator:envied on lib/utils/env.dart:
       #Environment variable not found for field `geminiApiKey`.
       #package:crops_ai/utils/env.dart:7:17
-      - name: 🏗️ Build and Delete Conflicts
-        run: flutter pub run build_runner build --delete-conflicting-outputs
+      #- name: 🏗️ Build and Delete Conflicts
+      #  run: flutter pub run build_runner build --delete-conflicting-outputs
 
       - name: 🧹 Format Code
         run: dart format .
 
       - name: ⌨️ Run Flutter Analyze
         run: flutter analyze .
-
-        #TODO Fix build failing
-      #- name: 🏗️ Build APK
-      #run: flutter build apk
 
       - name: 🏭 Create Release APK
         run: flutter build apk --release
