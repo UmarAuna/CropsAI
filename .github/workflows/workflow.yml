@@ -47,6 +47,7 @@ jobs:
       - name: ⌨️ Run Flutter Analyze
         run: flutter analyze .
 
+        #TODO Fix build failing
       #- name: 🏗️ Build APK
       #run: flutter build apk
 
