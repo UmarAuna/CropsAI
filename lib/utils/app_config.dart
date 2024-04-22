@@ -24,7 +24,7 @@ class AppConfig {
     //stopSequences: ["END"],
     // for now gemini-pro seems to support only one candidate
     candidateCount: 1,
-    maxOutputTokens: 1096,
+    maxOutputTokens: 4096,
     temperature: 0.4,
     topP: 0.1,
     topK: 32,
