@@ -55,29 +55,27 @@ class _CropsInformationPageState extends State<CropsInformationPage> {
             ? cropsInfoController.loading.value
                 ? const PageLoader()
                 : PopScope(
-                    canPop:
-                        true, //When false, blocks the current route from being popped.
+                    canPop: false,
                     onPopInvoked: (didPop) {
                       if (didPop) {
-                        cropsInfoController.responseText.value = '';
-                        goBack(context);
                         return;
                       }
+                      cropsInfoController.responseText.value = '';
+                      goBack(context);
                     },
                     child:
                         CropsInfoText(cropsInfoController: cropsInfoController))
             : cropsInfoController.loading.value
                 ? const PageLoader()
                 : PopScope(
-                    canPop:
-                        true, //When false, blocks the current route from being popped.
+                    canPop: false,
                     onPopInvoked: (didPop) {
                       if (didPop) {
-                        cropsInfoController.responseText.value = '';
-                        cropsInfoController.photo = null;
-                        goBack(context);
                         return;
                       }
+                      cropsInfoController.responseText.value = '';
+                      cropsInfoController.photo = null;
+                      goBack(context);
                     },
                     child: CropsInfoImage(
                         cropsInfoController: cropsInfoController)),

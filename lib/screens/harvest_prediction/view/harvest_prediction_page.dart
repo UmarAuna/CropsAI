@@ -62,15 +62,14 @@ class _HarvestPredictionPageState extends State<HarvestPredictionPage> {
             ? harvestPredictionController.loading.value
                 ? const PageLoader()
                 : PopScope(
-                    canPop:
-                        true, //When false, blocks the current route from being popped.
+                    canPop: false,
                     onPopInvoked: (didPop) {
                       debugPrint("didPop1: $didPop");
                       if (didPop) {
-                        harvestPredictionController.responseText.value = '';
-                        goBack(context);
                         return;
                       }
+                      harvestPredictionController.responseText.value = '';
+                      goBack(context);
                     },
                     child: HarvestPredictionText(
                         harvestPredictionController:
@@ -78,16 +77,15 @@ class _HarvestPredictionPageState extends State<HarvestPredictionPage> {
             : harvestPredictionController.loading.value
                 ? const PageLoader()
                 : PopScope(
-                    canPop:
-                        true, //When false, blocks the current route from being popped.
+                    canPop: false,
                     onPopInvoked: (didPop) {
                       debugPrint("didPop1: $didPop");
                       if (didPop) {
-                        harvestPredictionController.responseText.value = '';
-                        harvestPredictionController.photo = null;
-                        goBack(context);
                         return;
                       }
+                      harvestPredictionController.responseText.value = '';
+                      harvestPredictionController.photo = null;
+                      goBack(context);
                     },
                     child: HarvestPredictionImage(
                         harvestPredictionController:

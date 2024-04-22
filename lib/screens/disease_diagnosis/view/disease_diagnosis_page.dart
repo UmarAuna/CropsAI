@@ -60,14 +60,13 @@ class _DiseaseDiagnosisPageState extends State<DiseaseDiagnosisPage> {
               return diseaseDiagnoseController.loading.value
                   ? const PageLoader()
                   : PopScope(
-                      canPop:
-                          true, //When false, blocks the current route from being popped.
+                      canPop: false,
                       onPopInvoked: (didPop) {
                         if (didPop) {
-                          diseaseDiagnoseController.responseText.value = '';
-                          goBack(context);
                           return;
                         }
+                        diseaseDiagnoseController.responseText.value = '';
+                        goBack(context);
                       },
                       child: DiagnosisText(
                           diseaseDiagnosisController:
@@ -79,15 +78,14 @@ class _DiseaseDiagnosisPageState extends State<DiseaseDiagnosisPage> {
               return diseaseDiagnoseController.loading.value
                   ? const PageLoader()
                   : PopScope(
-                      canPop:
-                          true, //When false, blocks the current route from being popped.
+                      canPop: false,
                       onPopInvoked: (didPop) {
                         if (didPop) {
-                          diseaseDiagnoseController.responseText.value = '';
-                          diseaseDiagnoseController.photo = null;
-                          goBack(context);
                           return;
                         }
+                        diseaseDiagnoseController.responseText.value = '';
+                        diseaseDiagnoseController.photo = null;
+                        goBack(context);
                       },
                       child: DiagnosisImage(
                           diseaseDiagnosisController:
@@ -99,15 +97,14 @@ class _DiseaseDiagnosisPageState extends State<DiseaseDiagnosisPage> {
               return diseaseDiagnoseController.loading.value
                   ? const PageLoader()
                   : PopScope(
-                      canPop:
-                          true, //When false, blocks the current route from being popped.
+                      canPop: false,
                       onPopInvoked: (didPop) {
                         if (didPop) {
-                          diseaseDiagnoseController.responseText.value = '';
-                          diseaseDiagnoseController.photo = null;
-                          goBack(context);
                           return;
                         }
+                        diseaseDiagnoseController.responseText.value = '';
+                        diseaseDiagnoseController.photo = null;
+                        goBack(context);
                       },
                       child: DiagnosisPest(
                           diseaseDiagnosisController:
@@ -115,31 +112,6 @@ class _DiseaseDiagnosisPageState extends State<DiseaseDiagnosisPage> {
                     );
             });
           }
-        })
-/*  widget.isDiseaseNameSelected == 'disease_text'
-            ? diseaseDiagnoseController.loading.value
-                ? const PageLoader()
-                : WillPopScope(
-                    onWillPop: () async {
-                      diseaseDiagnoseController.responseText.value = '';
-                      goBack(context);
-                      return true;
-                    },
-                    child: DiagnosisText(
-                        diseaseDiagnosisController: diseaseDiagnoseController),
-                  )
-            : diseaseDiagnoseController.loading.value
-                ? const PageLoader()
-                : WillPopScope(
-                    onWillPop: () async {
-                      diseaseDiagnoseController.responseText.value = '';
-                      diseaseDiagnoseController.photo = null;
-                      goBack(context);
-                      return true;
-                    },
-                    child: DiagnosisImage(
-                        diseaseDiagnosisController: diseaseDiagnoseController),
-                  ), */
-        );
+        }));
   }
 }
