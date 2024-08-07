@@ -14,7 +14,7 @@ class AppConfig {
   );
 
   static final visionModel = GenerativeModel(
-    model: 'gemini-pro-vision',
+    model: 'gemini-1.5-flash',
     apiKey: apiKey,
     generationConfig: generationConfig,
     safetySettings: safetySettings,
