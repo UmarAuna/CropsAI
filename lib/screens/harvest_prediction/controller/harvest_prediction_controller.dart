@@ -24,10 +24,9 @@ class HarvestPredictionController extends GetxController {
         content: const Text('Please connect too the internet...'),
         confirmButton: ElevatedButton(
           style: ButtonStyle(
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+              shape: WidgetStateProperty.all(RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8))),
-              backgroundColor:
-                  MaterialStateProperty.all(AppColors.primaryColor)),
+              backgroundColor: WidgetStateProperty.all(AppColors.primaryColor)),
           onPressed: () {
             goBack(Get.context!);
           },
@@ -113,10 +112,9 @@ As a highly skilled farmer, Could you kindly help me with the following inquirie
         content: const Text('Please connect too the internet...'),
         confirmButton: ElevatedButton(
           style: ButtonStyle(
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+              shape: WidgetStateProperty.all(RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8))),
-              backgroundColor:
-                  MaterialStateProperty.all(AppColors.primaryColor)),
+              backgroundColor: WidgetStateProperty.all(AppColors.primaryColor)),
           onPressed: () {
             goBack(Get.context!);
           },

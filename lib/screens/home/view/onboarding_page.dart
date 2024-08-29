@@ -63,11 +63,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     flex: 2,
                     child: ElevatedButton(
                       style: ButtonStyle(
-                          shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10))),
-                          backgroundColor: MaterialStateProperty.all(
-                              AppColors.primaryColor)),
+                          shape: WidgetStateProperty.all(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10))),
+                          backgroundColor:
+                              WidgetStateProperty.all(AppColors.primaryColor)),
                       onPressed: () {
                         homeController.goToHomePage(context);
                       },

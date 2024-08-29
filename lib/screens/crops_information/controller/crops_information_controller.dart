@@ -24,10 +24,9 @@ class CropsInformationController extends GetxController {
         content: const Text('Please connect too the internet...'),
         confirmButton: ElevatedButton(
           style: ButtonStyle(
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+              shape: WidgetStateProperty.all(RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8))),
-              backgroundColor:
-                  MaterialStateProperty.all(AppColors.primaryColor)),
+              backgroundColor: WidgetStateProperty.all(AppColors.primaryColor)),
           onPressed: () {
             goBack(Get.context!);
           },
@@ -104,10 +103,9 @@ As a highly skilled farmer please Identify the name of the crop in the image and
         content: const Text('Please connect too the internet...'),
         confirmButton: ElevatedButton(
           style: ButtonStyle(
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+              shape: WidgetStateProperty.all(RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8))),
-              backgroundColor:
-                  MaterialStateProperty.all(AppColors.primaryColor)),
+              backgroundColor: WidgetStateProperty.all(AppColors.primaryColor)),
           onPressed: () {
             goBack(Get.context!);
           },

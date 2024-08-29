@@ -167,10 +167,10 @@ class _HarvestPredictionModalState extends State<HarvestPredictionModal> {
                       10.heightSpace,
                       ElevatedButton(
                         style: ButtonStyle(
-                            shape: MaterialStateProperty.all(
+                            shape: WidgetStateProperty.all(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8))),
-                            backgroundColor: MaterialStateProperty.all(
+                            backgroundColor: WidgetStateProperty.all(
                                 AppColors.primaryColor)),
                         onPressed: () {
                           FocusManager.instance.primaryFocus?.unfocus();
@@ -217,10 +217,10 @@ class _HarvestPredictionModalState extends State<HarvestPredictionModal> {
                       10.heightSpace,
                       ElevatedButton(
                         style: ButtonStyle(
-                            shape: MaterialStateProperty.all(
+                            shape: WidgetStateProperty.all(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8))),
-                            backgroundColor: MaterialStateProperty.all(
+                            backgroundColor: WidgetStateProperty.all(
                                 AppColors.primaryColor)),
                         onPressed: () {
                           FocusManager.instance.primaryFocus?.unfocus();

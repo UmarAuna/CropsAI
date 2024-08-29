@@ -24,10 +24,9 @@ class DiseaseDiagnosisController extends GetxController {
         content: const Text('Please connect too the internet...'),
         confirmButton: ElevatedButton(
           style: ButtonStyle(
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+              shape: WidgetStateProperty.all(RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8))),
-              backgroundColor:
-                  MaterialStateProperty.all(AppColors.primaryColor)),
+              backgroundColor: WidgetStateProperty.all(AppColors.primaryColor)),
           onPressed: () {
             goBack(Get.context!);
           },
@@ -112,10 +111,9 @@ As a highly skilled farmer please Identify the pest in the image, the name of th
         content: const Text('Please connect too the internet...'),
         confirmButton: ElevatedButton(
           style: ButtonStyle(
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+              shape: WidgetStateProperty.all(RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8))),
-              backgroundColor:
-                  MaterialStateProperty.all(AppColors.primaryColor)),
+              backgroundColor: WidgetStateProperty.all(AppColors.primaryColor)),
           onPressed: () {
             goBack(Get.context!);
           },
@@ -210,10 +208,9 @@ As a highly skilled farmer please Identify and diagnose the crop infected in the
         content: const Text('Please connect too the internet...'),
         confirmButton: ElevatedButton(
           style: ButtonStyle(
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+              shape: WidgetStateProperty.all(RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8))),
-              backgroundColor:
-                  MaterialStateProperty.all(AppColors.primaryColor)),
+              backgroundColor: WidgetStateProperty.all(AppColors.primaryColor)),
           onPressed: () {
             goBack(Get.context!);
           },
